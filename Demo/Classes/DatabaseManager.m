@@ -110,6 +110,20 @@ static DatabaseManager *sharedManager;
 	[op start];
 }
 
+-(void)updateDocument:(CCouchDBDocument *)inDocument
+{
+    CouchDBSuccessHandler inSuccessHandler = ^(id inParameter) {
+		NSLog(@"Wooohooo! Updated %@", inParameter);
+	};
+    
+	CouchDBFailureHandler inFailureHandler = ^(NSError *error) {
+		NSLog(@"D'OH! Updated %@", error);
+	};
+
+    CURLOperation *op = [self.database operationToUpdateDocument:inDocument successHandler:inSuccessHandler failureHandler:inFailureHandler];
+    
+}
+
 -(void)dealloc
 {
 	[server release];

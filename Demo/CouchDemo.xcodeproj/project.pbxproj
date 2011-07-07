@@ -804,7 +804,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = i386;
+				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
 				CODE_SIGN_ENTITLEMENTS = "";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -818,7 +818,8 @@
 				);
 				PRODUCT_NAME = "CouchDemo-iphonesimulator";
 				SUPPORTED_PLATFORMS = iphonesimulator;
-				VALID_ARCHS = i386;
+				VALID_ARCHS = "i386 armv7 armv6";
+				"VALID_ARCHS[sdk=iphoneos*]" = i386;
 			};
 			name = Debug;
 		};
@@ -826,7 +827,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = i386;
+				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = CouchDemo_Prefix.pch;
 				INFOPLIST_FILE = "CouchDemo-Info.plist";
@@ -837,7 +838,8 @@
 				PRODUCT_NAME = "CouchDemo-iphonesimulator";
 				SUPPORTED_PLATFORMS = iphonesimulator;
 				VALIDATE_PRODUCT = YES;
-				VALID_ARCHS = i386;
+				VALID_ARCHS = "i386 armv7 armv6";
+				"VALID_ARCHS[sdk=iphoneos*]" = i386;
 			};
 			name = Release;
 		};
@@ -860,9 +862,10 @@
 					"$(inherited)",
 					"\"$(SDKROOT)/usr/lib/gcc/arm-apple-darwin10/4.0.1\"",
 				);
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "CouchDemo-iphoneos";
 				SUPPORTED_PLATFORMS = iphoneos;
-				VALID_ARCHS = armv6;
+				VALID_ARCHS = "armv6 armv7";
 			};
 			name = Debug;
 		};
@@ -881,10 +884,11 @@
 					"$(inherited)",
 					"\"$(SDKROOT)/usr/lib/gcc/arm-apple-darwin10/4.0.1\"",
 				);
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "CouchDemo-iphoneos";
 				SUPPORTED_PLATFORMS = iphoneos;
 				VALIDATE_PRODUCT = YES;
-				VALID_ARCHS = armv6;
+				VALID_ARCHS = "armv6 armv7";
 			};
 			name = Release;
 		};

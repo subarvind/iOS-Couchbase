@@ -23,12 +23,21 @@
 #import "CCouchDBDatabase.h"
 #import "NewItemViewController.h"
 #import "DatabaseManager.h"
+#import "CouchDBClientTypes.h"
+#import "CURLOperation.h"
+
+
+
 
 @implementation RootViewController
 @synthesize items;
+@synthesize checked;
 @synthesize syncItem;
 @synthesize activityButtonItem;
 @synthesize couchbaseURL;
+@synthesize delegate;
+
+//NSMutableArray * checked = [NSMutableArray arrayWithObjects: @"",nil ];
 
 #pragma mark -
 #pragma mark View lifecycle
@@ -36,6 +45,8 @@
 -(NSURL *)getCouchbaseURL {
 	return self.couchbaseURL;
 }
+
+
 
 -(void)couchbaseDidStart:(NSURL *)serverURL {
 	self.couchbaseURL = serverURL;
@@ -49,6 +60,8 @@
 	self.navigationItem.rightBarButtonItem = self.syncItem;
 	self.navigationItem.leftBarButtonItem.enabled = YES;
 	self.navigationItem.rightBarButtonItem.enabled = YES;
+    
+    //_checkboxSelections =0;
 }
 
 - (void)viewDidLoad {
@@ -77,6 +90,7 @@
 {
 	self.syncItem = self.navigationItem.rightBarButtonItem;
 	[self.navigationItem setRightBarButtonItem: self.activityButtonItem animated:YES];
+    //cell.textLabel.text = [items objectAtIndex:indexPath.row];
 	DatabaseManager *manager = [DatabaseManager sharedManager:self.couchbaseURL];
 	DatabaseManagerSuccessHandler successHandler = ^() {
   	    //woot	
@@ -88,13 +102,13 @@
 		// doh	
 	};
 	
-	[manager syncFrom:@"http://jan.couchone.com/demo" to:@"demo" onSuccess:successHandler onError:errorHandler];
-	[manager syncFrom:@"demo" to:@"http://jan.couchone.com/demo" onSuccess:^() {} onError:^(id error) {}];
+	[manager syncFrom:@"http://subarvind.iriscouch.com/demo/" to:@"demo" onSuccess:successHandler onError:errorHandler];
+	[manager syncFrom:@"demo" to:@"http://subarvind.iriscouch.com/demo/" onSuccess:^() {} onError:^(id error) {}];
 }
 
 -(void)loadItemsIntoView
 {
-	if(self.navigationItem.rightBarButtonItem != syncItem) {
+	if(self.navigationItem.rightBarButtonItem       != syncItem) {
 		[self.navigationItem setRightBarButtonItem: syncItem animated:YES];
 	}
 
@@ -102,6 +116,8 @@
 	CouchDBSuccessHandler inSuccessHandler = ^(id inParameter) {
 //		NSLog(@"RVC Wooohooo! %@: %@", [inParameter class], inParameter);
 		self.items = inParameter;
+        NSLog(@"%@",self.items);
+    
 		[self.tableView reloadData];
 	};
 	
@@ -114,6 +130,133 @@
 																		 failureHandler:inFailureHandler];
 	[op start];
 }	
+
+
+// Customize the appearance of table view cells.
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    static NSString *CellIdentifier = @"Cell";
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+    }
+    cell.accessoryType = UITableViewCellAccessoryNone;
+    
+	// Configure the cell.
+	CCouchDBDocument *doc = [self.items objectAtIndex:indexPath.row];
+    id check = [NSNumber numberWithInteger: 1];
+
+    if ([[doc valueForKey:@"content"] valueForKey:@"check"] == check) {
+        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+    }
+    else{
+        cell.accessoryType = UITableViewCellAccessoryNone;
+    }
+    
+    int yam = [self.items count];
+    NSLog(@"%u", yam);
+    NSLog(@"HEEEEEEYYYYYYYOOOOOOO");
+    //NSLog([self.items count]);
+	cell.textLabel.text = [[doc valueForKey:@"content"] valueForKey:@"text"];
+    
+    
+//    
+//   //int updateid = [[doc valueForKey:@"content"] valueForKey:@"_id"];
+//    
+//        
+//    int flag = (1 << indexPath.row);
+//    //NSLog(@"flag = %u", flag);
+//    //NSLog(@"checks = %u", _checkboxSelections);
+//    
+//    
+//    // update row's accessory if it's "turned on"
+//    if (_checkboxSelections & flag) {
+//         cell.accessoryType = UITableViewCellAccessoryCheckmark;
+//        
+//        
+//       
+//        int x = 1;
+//        
+//        
+//        //[[doc valueForKey:@"content"] valueForKey:@"check"] = x;
+//        
+//        NSDictionary *inDocument = [NSDictionary dictionaryWithObjectsAndKeys:[[doc valueForKey:@"content"] valueForKey:@"text"], @"text"
+//                                   , [[NSDate date] description], @"created_at"
+//                                   , [NSNumber numberWithInt:x],@"check", nil];
+//       
+//       // CURLOperation *op = [sharedManager.database  operationToUpdateDocument:doc successHandler:inSuccessHandler failureHandler: inFailureHandler]; 
+//        
+//       // [op start];
+//                    
+//          DatabaseManager *sharedManager = [DatabaseManager sharedManager:[delegate getCouchbaseURL]];
+//        
+//        
+//        CouchDBSuccessHandler inSuccessHandler = ^(id inParameter) {
+//            NSLog(@"Wooohooo! %@", inParameter);
+//            [delegate performSelector:@selector(newItemAdded)];
+//        };
+//        
+//        CouchDBFailureHandler inFailureHandler = ^(NSError *error) {
+//            NSLog(@"D'OH! %@", error);
+//        };            
+//           // NSString *updateid = [[doc valueForKey:@"content"] valueForKey:@"_id"];
+//           
+//        NSUInteger position = [indexPath indexAtPosition:1]; // indexPath is [0, idx]
+//		[[DatabaseManager sharedManager:self.couchbaseURL] deleteDocument: [items objectAtIndex:position]];
+//		//[items removeObjectAtIndex: position];
+//       // [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+//            
+//       CURLOperation *op = [sharedManager.database  operationToUpdateDocument:doc successHandler:inSuccessHandler failureHandler: inFailureHandler];          
+//                                                                   
+//            
+//            
+//            //CURLOperation *op = [sharedManager.database operationToCreateDocument:inDocument
+//            
+//        [op start];
+//        
+//        DatabaseManager *manager = [DatabaseManager sharedManager:self.couchbaseURL];
+//        DatabaseManagerSuccessHandler successHandler = ^() {
+//            //woot	
+//            NSLog(@"success handler called!");
+//            [self loadItemsIntoView];
+//        };
+//        
+//        DatabaseManagerErrorHandler errorHandler = ^(id error) {
+//            // doh	
+//        };
+//        
+//        [manager syncFrom:@"http://subarvind.iriscouch.com/demo/" to:@"demo" onSuccess:successHandler onError:errorHandler];
+//        [manager syncFrom:@"demo" to:@"http://subarvind.iriscouch.com/demo/" onSuccess:^() {} onError:^(id error) {}];
+//        
+//        // NSString positionu = [indexPath indexAtPosition:1];
+//        CURLOperation *up = [sharedManager.database operationToCreateDocument:inDocument 
+//                                                                   identifier:[[doc valueForKey:@"content"] valueForKey:@"_id"]
+//                                                               successHandler:inSuccessHandler 
+//                                                               failureHandler:inFailureHandler];
+//        
+//        
+//        //CURLOperation *op = [sharedManager.database operationToCreateDocument:inDocument
+//        
+//        [up start];
+//        
+//        [manager syncFrom:@"http://subarvind.iriscouch.com/demo/" to:@"demo" onSuccess:successHandler onError:errorHandler];
+//        [manager syncFrom:@"demo" to:@"http://subarvind.iriscouch.com/demo/" onSuccess:^() {} onError:^(id error) {}];
+//        
+//        };
+//    
+//
+//        
+//        
+           
+
+    
+    return cell;
+    
+}
+
+
+
 
 -(void)newItemAdded
 {
@@ -168,7 +311,7 @@
 
 // Customize the number of sections in the table view.
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
+    return 2;
 }
 
 
@@ -177,22 +320,6 @@
     return [self.items count];
 }
 
-
-// Customize the appearance of table view cells.
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    static NSString *CellIdentifier = @"Cell";
-    
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
-    }
-    
-	// Configure the cell.
-	CCouchDBDocument *doc = [self.items objectAtIndex:indexPath.row];
-	cell.textLabel.text = [[doc valueForKey:@"content"] valueForKey:@"text"];
-    return cell;
-}
 
 
 // Override to support conditional editing of the table view.
@@ -238,17 +365,36 @@
 
 #pragma mark -
 #pragma mark Table view delegate
-
+int i=0;
+//NSMutableArray *checked = nil;
+//NSMutableArray *checked = [[NSMutableArray alloc]init];
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+
+//    get the document from the items
+//    update the document to set checked = !checked
+//    save the document to the Couchbase running on localhost self.couchbaseURL
+//    do the repaint
     
-	/*
+    
+    
+//	_checkboxSelections ^= (1 << indexPath.row);
+    
+
+    //SYNC HERE
+    [tableView reloadData];
+    
+    /*
 	 <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
      // ...
      // Pass the selected object to the new view controller.
 	 [self.navigationController pushViewController:detailViewController animated:YES];
 	 [detailViewController release];
 	 */
+    //int m = [checked count];
 }
+//int m = [checked count];
+
+
 
 
 #pragma mark -
@@ -268,6 +414,8 @@
 
 
 - (void)dealloc {
+    [items release];
+    [checked release];
     [super dealloc];
 }
 

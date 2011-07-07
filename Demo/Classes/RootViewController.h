@@ -22,16 +22,23 @@
 
 @interface RootViewController : UITableViewController {
 	NSMutableArray *items;
+    NSMutableArray *checked;
 	UIBarButtonItem *syncItem;
 	UIBarButtonItem *activityButtonItem;
+    
+    NSInteger   _checkboxSelections;
 }
 @property(nonatomic, retain)NSMutableArray *items;
+@property(nonatomic, retain) NSMutableArray *checked;
 @property(nonatomic, retain)UIBarButtonItem *syncItem;
 @property(nonatomic, retain)UIBarButtonItem *activityButtonItem;
 @property(nonatomic, retain)NSURL *couchbaseURL;
+@property(assign) id delegate;
+
 
 -(void)loadItemsIntoView;
 -(void)couchbaseDidStart:(NSURL *)serverURL;
 -(NSURL *)getCouchbaseURL;
+- (void)addIndex:(NSUInteger)index;
 
 @end
