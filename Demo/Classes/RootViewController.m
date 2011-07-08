@@ -66,19 +66,19 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     //self.navigationItem.rightBarButtonItem = self.editButtonItem;
-
+    
 	// setup buttons
 	UIBarButtonItem *addButtonItem = [[[UIBarButtonItem alloc] 
 									   initWithBarButtonSystemItem:UIBarButtonSystemItemAdd 
-										   target:self 
-										   action:@selector(addItem) 
-									 ] autorelease];
+                                       target:self 
+                                       action:@selector(addItem) 
+                                       ] autorelease];
 	addButtonItem.enabled = NO;
 	self.navigationItem.leftBarButtonItem = addButtonItem;
-
+    
 	UIActivityIndicatorView *activity = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite] autorelease];
 	[activity startAnimating];
 	self.activityButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:activity] autorelease];
@@ -97,7 +97,7 @@
 		NSLog(@"success handler called!");
 		[self loadItemsIntoView];
 	};
-
+    
 	DatabaseManagerErrorHandler errorHandler = ^(id error) {
 		// doh	
 	};
@@ -111,13 +111,13 @@
 	if(self.navigationItem.rightBarButtonItem       != syncItem) {
 		[self.navigationItem setRightBarButtonItem: syncItem animated:YES];
 	}
-
+    
 	DatabaseManager *sharedManager = [DatabaseManager sharedManager:self.couchbaseURL];
 	CouchDBSuccessHandler inSuccessHandler = ^(id inParameter) {
-//		NSLog(@"RVC Wooohooo! %@: %@", [inParameter class], inParameter);
+        //		NSLog(@"RVC Wooohooo! %@: %@", [inParameter class], inParameter);
 		self.items = inParameter;
         NSLog(@"%@",self.items);
-    
+        
 		[self.tableView reloadData];
 	};
 	
@@ -146,117 +146,62 @@
 	// Configure the cell.
 	CCouchDBDocument *doc = [self.items objectAtIndex:indexPath.row];
     id check = [NSNumber numberWithInteger: 1];
-
+    
     if ([[doc valueForKey:@"content"] valueForKey:@"check"] == check) {
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
     }
     else{
         cell.accessoryType = UITableViewCellAccessoryNone;
     }
+    cell.textLabel.text = [[doc valueForKey:@"content"] valueForKey:@"text"];
     
-    int yam = [self.items count];
-    NSLog(@"%u", yam);
-    NSLog(@"HEEEEEEYYYYYYYOOOOOOO");
-    //NSLog([self.items count]);
-	cell.textLabel.text = [[doc valueForKey:@"content"] valueForKey:@"text"];
+    //arvind - get the indexpath.row bit
+    int flag = (1 << indexPath.row);
     
     
-//    
-//   //int updateid = [[doc valueForKey:@"content"] valueForKey:@"_id"];
-//    
-//        
-//    int flag = (1 << indexPath.row);
-//    //NSLog(@"flag = %u", flag);
-//    //NSLog(@"checks = %u", _checkboxSelections);
-//    
-//    
-//    // update row's accessory if it's "turned on"
-//    if (_checkboxSelections & flag) {
-//         cell.accessoryType = UITableViewCellAccessoryCheckmark;
-//        
-//        
-//       
-//        int x = 1;
-//        
-//        
-//        //[[doc valueForKey:@"content"] valueForKey:@"check"] = x;
-//        
-//        NSDictionary *inDocument = [NSDictionary dictionaryWithObjectsAndKeys:[[doc valueForKey:@"content"] valueForKey:@"text"], @"text"
-//                                   , [[NSDate date] description], @"created_at"
-//                                   , [NSNumber numberWithInt:x],@"check", nil];
-//       
-//       // CURLOperation *op = [sharedManager.database  operationToUpdateDocument:doc successHandler:inSuccessHandler failureHandler: inFailureHandler]; 
-//        
-//       // [op start];
-//                    
-//          DatabaseManager *sharedManager = [DatabaseManager sharedManager:[delegate getCouchbaseURL]];
-//        
-//        
-//        CouchDBSuccessHandler inSuccessHandler = ^(id inParameter) {
-//            NSLog(@"Wooohooo! %@", inParameter);
-//            [delegate performSelector:@selector(newItemAdded)];
-//        };
-//        
-//        CouchDBFailureHandler inFailureHandler = ^(NSError *error) {
-//            NSLog(@"D'OH! %@", error);
-//        };            
-//           // NSString *updateid = [[doc valueForKey:@"content"] valueForKey:@"_id"];
-//           
-//        NSUInteger position = [indexPath indexAtPosition:1]; // indexPath is [0, idx]
-//		[[DatabaseManager sharedManager:self.couchbaseURL] deleteDocument: [items objectAtIndex:position]];
-//		//[items removeObjectAtIndex: position];
-//       // [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-//            
-//       CURLOperation *op = [sharedManager.database  operationToUpdateDocument:doc successHandler:inSuccessHandler failureHandler: inFailureHandler];          
-//                                                                   
-//            
-//            
-//            //CURLOperation *op = [sharedManager.database operationToCreateDocument:inDocument
-//            
-//        [op start];
-//        
-//        DatabaseManager *manager = [DatabaseManager sharedManager:self.couchbaseURL];
-//        DatabaseManagerSuccessHandler successHandler = ^() {
-//            //woot	
-//            NSLog(@"success handler called!");
-//            [self loadItemsIntoView];
-//        };
-//        
-//        DatabaseManagerErrorHandler errorHandler = ^(id error) {
-//            // doh	
-//        };
-//        
-//        [manager syncFrom:@"http://subarvind.iriscouch.com/demo/" to:@"demo" onSuccess:successHandler onError:errorHandler];
-//        [manager syncFrom:@"demo" to:@"http://subarvind.iriscouch.com/demo/" onSuccess:^() {} onError:^(id error) {}];
-//        
-//        // NSString positionu = [indexPath indexAtPosition:1];
-//        CURLOperation *up = [sharedManager.database operationToCreateDocument:inDocument 
-//                                                                   identifier:[[doc valueForKey:@"content"] valueForKey:@"_id"]
-//                                                               successHandler:inSuccessHandler 
-//                                                               failureHandler:inFailureHandler];
-//        
-//        
-//        //CURLOperation *op = [sharedManager.database operationToCreateDocument:inDocument
-//        
-//        [up start];
-//        
-//        [manager syncFrom:@"http://subarvind.iriscouch.com/demo/" to:@"demo" onSuccess:successHandler onError:errorHandler];
-//        [manager syncFrom:@"demo" to:@"http://subarvind.iriscouch.com/demo/" onSuccess:^() {} onError:^(id error) {}];
-//        
-//        };
-//    
-//
-//        
-//        
-           
+    //arvind - update row's accessory if it's "turned on"
+    //arvind - here changes are made to local db only when a row is checked, a similar code could be added to update db when row is unchecked
+    if (_checkboxSelections & flag) {
+        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+        int x = 1;
+        
+        //arvind - creatinf the updated doc
+        NSDictionary *inDocument = [NSDictionary dictionaryWithObjectsAndKeys:[[doc valueForKey:@"content"] valueForKey:@"text"], @"text"
+                                    , [[NSDate date] description], @"created_at"
+                                    , [NSNumber numberWithInt:x],@"check", nil];
+        
+        
+        DatabaseManager *sharedManager = [DatabaseManager sharedManager:[delegate getCouchbaseURL]];
+        
+        
+        CouchDBSuccessHandler inSuccessHandler = ^(id inParameter) {
+            NSLog(@"Wooohooo! %@", inParameter);
+            [delegate performSelector:@selector(newItemAdded)];
+        };
+        
+        CouchDBFailureHandler inFailureHandler = ^(NSError *error) {
+            NSLog(@"D'OH! %@", error);
+        };            
+        // NSString *updateid = [[doc valueForKey:@"content"] valueForKey:@"_id"];
+        
+        
+        //deleting content of the old doc, had to do this as update was failing, have to try and get update to work
+        NSUInteger position = [indexPath indexAtPosition:1]; // indexPath is [0, idx]
+        [[DatabaseManager sharedManager:self.couchbaseURL] deleteDocument: [items objectAtIndex:position]];
+       
+        
+        CURLOperation *op = [sharedManager.database operationToCreateDocument:inDocument 
+                                                                   identifier:[[doc valueForKey:@"content"]valueForKey:@"_id"]
+                                                               successHandler:inSuccessHandler 
+                                                               failureHandler:inFailureHandler];
 
-    
+        
+        [op start];
+        
+    };
     return cell;
     
 }
-
-
-
 
 -(void)newItemAdded
 {
@@ -274,36 +219,7 @@
 	[newItemVC release];
 	[newItemNC release];
 }
-									  
 
-/*
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-}
-*/
-/*
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-}
-*/
-/*
-- (void)viewWillDisappear:(BOOL)animated {
-	[super viewWillDisappear:animated];
-}
-*/
-/*
-- (void)viewDidDisappear:(BOOL)animated {
-	[super viewDidDisappear:animated];
-}
-*/
-
-/*
- // Override to allow orientations other than the default portrait orientation.
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-	// Return YES for supported orientations.
-	return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
- */
 
 
 #pragma mark -
@@ -322,14 +238,6 @@
 
 
 
-// Override to support conditional editing of the table view.
-//- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-//    // Return NO if you do not want the specified item to be editable.
-//    return YES;
-//}
-
-
-
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     
@@ -345,57 +253,14 @@
     }   
 }
 
-
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-
 #pragma mark -
 #pragma mark Table view delegate
-int i=0;
-//NSMutableArray *checked = nil;
-//NSMutableArray *checked = [[NSMutableArray alloc]init];
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-
-//    get the document from the items
-//    update the document to set checked = !checked
-//    save the document to the Couchbase running on localhost self.couchbaseURL
-//    do the repaint
-    
-    
-    
-//	_checkboxSelections ^= (1 << indexPath.row);
-    
-
-    //SYNC HERE
+    //arvind - toggle the indexpath.row bit, to have the ability to check / uncheck
+	_checkboxSelections ^= (1 << indexPath.row);
     [tableView reloadData];
-    
-    /*
-	 <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-	 [self.navigationController pushViewController:detailViewController animated:YES];
-	 [detailViewController release];
-	 */
-    //int m = [checked count];
 }
-//int m = [checked count];
-
-
-
 
 #pragma mark -
 #pragma mark Memory management

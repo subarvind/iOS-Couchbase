@@ -109,59 +109,59 @@
 	[op start];
 }
 
--(void)loadItemsIntoView
-{
-	    
-	DatabaseManager *sharedManager = [DatabaseManager sharedManager:self.couchbaseURL];
-	CouchDBSuccessHandler inSuccessHandler = ^(id inParameter) {
-        //		NSLog(@"RVC Wooohooo! %@: %@", [inParameter class], inParameter);
-        //NSMutableArray * mutableArray = [NSMutableArray arrayWithObjects:@"blah", nil ];
-		self.items = inParameter;
-        NSLog(@"%@",self.items);
-        
-        
-        // int ifcheck = 
-        //self.checked = inParameter; //ARVIND
-        //self.checked = inParameter;
-        //int k=0;
-        // int i=1;
-        //int j=1;
-        
-        // int m=[self.checked count];
-        //printf int m;
-        /*    for (int i=1; i<=[checked count]; i++) {
-         for (int j=1; j<=[self.items count]; j++) {
-         // printf("[checked count]");
-         NSString *item = [self.items objectAtIndex:j];
-         NSString *obj = [checked objectAtIndex:i];
-         
-         if([item isEqualToString: obj]){
-         //cell.accessoryType = UITableViewCellAccessoryCheckmark;
-         k=56;
-         exit(1);
-         }else{
-         // cell.accessoryType = UITableViewCellAccessoryNone;
-         k = 57;
-         exit(1);
-         }
-         j=1;	
-         }
-         i=1;
-         }
-         */
-        
-		//[self.tableView reloadData];
-	};
-	
-	CouchDBFailureHandler inFailureHandler = ^(NSError *error) {
-		NSLog(@"RVC D'OH! %@", error);
-	};
-	NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:@"true", @"descending", @"true", @"include_docs", nil];
-	CURLOperation *op = [sharedManager.database operationToFetchAllDocumentsWithOptions:options 
-																	 withSuccessHandler:inSuccessHandler 
-																		 failureHandler:inFailureHandler];
-	[op start];
-}	
+//-(void)loadItemsIntoView
+//{
+//	    
+//	DatabaseManager *sharedManager = [DatabaseManager sharedManager:self.couchbaseURL];
+//	CouchDBSuccessHandler inSuccessHandler = ^(id inParameter) {
+//        //		NSLog(@"RVC Wooohooo! %@: %@", [inParameter class], inParameter);
+//        //NSMutableArray * mutableArray = [NSMutableArray arrayWithObjects:@"blah", nil ];
+//		self.items = inParameter;
+//        NSLog(@"%@",self.items);
+//        
+//        
+//        // int ifcheck = 
+//        //self.checked = inParameter; //ARVIND
+//        //self.checked = inParameter;
+//        //int k=0;
+//        // int i=1;
+//        //int j=1;
+//        
+//        // int m=[self.checked count];
+//        //printf int m;
+//        /*    for (int i=1; i<=[checked count]; i++) {
+//         for (int j=1; j<=[self.items count]; j++) {
+//         // printf("[checked count]");
+//         NSString *item = [self.items objectAtIndex:j];
+//         NSString *obj = [checked objectAtIndex:i];
+//         
+//         if([item isEqualToString: obj]){
+//         //cell.accessoryType = UITableViewCellAccessoryCheckmark;
+//         k=56;
+//         exit(1);
+//         }else{
+//         // cell.accessoryType = UITableViewCellAccessoryNone;
+//         k = 57;
+//         exit(1);
+//         }
+//         j=1;	
+//         }
+//         i=1;
+//         }
+//         */
+//        
+//		//[self.tableView reloadData];
+//	};
+//	
+//	CouchDBFailureHandler inFailureHandler = ^(NSError *error) {
+//		NSLog(@"RVC D'OH! %@", error);
+//	};
+//	NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:@"true", @"descending", @"true", @"include_docs", nil];
+//	CURLOperation *op = [sharedManager.database operationToFetchAllDocumentsWithOptions:options 
+//																	 withSuccessHandler:inSuccessHandler 
+//																		 failureHandler:inFailureHandler];
+//	[op start];
+//}	
 
 
 
