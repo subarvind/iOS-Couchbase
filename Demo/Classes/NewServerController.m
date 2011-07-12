@@ -7,6 +7,7 @@
 #import "DatabaseManager.h"
 #import "CouchDBClientTypes.h"
 #import "CURLOperation.h"
+#import "Server.h"
 
 
 
@@ -61,33 +62,44 @@
 {
 	NSString *text = textView.text;
     
-    int new = 0;
+    //int new = 0;
+    
+    Server *myserver = [Server sharedInstance];
+//    
+    [myserver setServerName:text];
+    
+    NSString * haw = [myserver getServerName];
+    NSLog(@"%@", haw);
+    
+    //[Server sharedInstance].servername = text;
+    [self.navigationController dismissModalViewControllerAnimated:YES];
+    
 	
-	NSDictionary *inDocument = [NSDictionary dictionaryWithObjectsAndKeys:text, @"text"
-                                , [[NSDate date] description], @"created_at"
-                                , [NSNumber numberWithInt:new],@"check", nil];
-	CouchDBSuccessHandler inSuccessHandler = ^(id inParameter) {
-		NSLog(@"Wooohooo! %@", inParameter);
-		[delegate performSelector:@selector(newItemAdded)];
-	};
-    
-	CouchDBFailureHandler inFailureHandler = ^(NSError *error) {
-		NSLog(@"D'OH! %@", error);
-	};
-	CFUUIDRef uuid = CFUUIDCreate(nil);
-    NSString *guid = (NSString*)CFUUIDCreateString(nil, uuid);
-    CFRelease(uuid);
-	NSString *docId = [NSString stringWithFormat:@"%f-%@", CFAbsoluteTimeGetCurrent(), guid];
-	DatabaseManager *sharedManager = [DatabaseManager sharedManager:[delegate getCouchbaseURL]];
-	CURLOperation *op = [sharedManager.database operationToCreateDocument:inDocument 
-															   identifier:docId
-														   successHandler:inSuccessHandler 
-														   failureHandler:inFailureHandler];
-    
-    
-    //CURLOperation *op = [sharedManager.database operationToCreateDocument:inDocument
-    
-	[op start];
+//	NSDictionary *inDocument = [NSDictionary dictionaryWithObjectsAndKeys:text, @"text"
+//                                , [[NSDate date] description], @"created_at"
+//                                , [NSNumber numberWithInt:new],@"check", nil];
+//	CouchDBSuccessHandler inSuccessHandler = ^(id inParameter) {
+//		NSLog(@"Wooohooo! %@", inParameter);
+//		[delegate performSelector:@selector(newItemAdded)];
+//	};
+//    
+//	CouchDBFailureHandler inFailureHandler = ^(NSError *error) {
+//		NSLog(@"D'OH! %@", error);
+//	};
+//	CFUUIDRef uuid = CFUUIDCreate(nil);
+//    NSString *guid = (NSString*)CFUUIDCreateString(nil, uuid);
+//    CFRelease(uuid);
+//	NSString *docId = [NSString stringWithFormat:@"%f-%@", CFAbsoluteTimeGetCurrent(), guid];
+//	DatabaseManager *sharedManager = [DatabaseManager sharedManager:[delegate getCouchbaseURL]];
+//	CURLOperation *op = [sharedManager.database operationToCreateDocument:inDocument 
+//															   identifier:docId
+//														   successHandler:inSuccessHandler 
+//														   failureHandler:inFailureHandler];
+//    
+//    
+//    //CURLOperation *op = [sharedManager.database operationToCreateDocument:inDocument
+//    
+//	[op start];
 }
 
 //-(void)loadItemsIntoView

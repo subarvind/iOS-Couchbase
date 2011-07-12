@@ -26,6 +26,7 @@
 #import "DatabaseManager.h"
 #import "CouchDBClientTypes.h"
 #import "CURLOperation.h"
+#import "Server.h"
 
 
 
@@ -137,9 +138,16 @@
 	DatabaseManagerErrorHandler errorHandler = ^(id error) {
 		// doh	
 	};
+    
+    Server *thisserver = [Server sharedInstance];
+    
+    NSString *userserver = [thisserver getServerName];
 	
-	[manager syncFrom:@"http://subarvind.iriscouch.com/demo/" to:@"demo" onSuccess:successHandler onError:errorHandler];
-	[manager syncFrom:@"demo" to:@"http://subarvind.iriscouch.com/demo/" onSuccess:^() {} onError:^(id error) {}];
+    NSLog(@"%@", userserver);    
+
+    
+	//[manager syncFrom:userserver to:@"demo" onSuccess:successHandler onError:errorHandler];
+   // [manager syncFrom:@"demo" to:userserver onSuccess:^() {} onError:^(id error) {}];
 }
 
 -(void)loadItemsIntoView
@@ -198,6 +206,12 @@
     //arvind - update row's accessory if it's "turned on"
     //arvind - here changes are made to local db only when a row is checked, a similar code could be added to update db when row is unchecked
     if (_checkboxSelections & flag) {
+        Server *myserver = [Server sharedInstance];
+        
+        //NSLog(@" djhgjlcflkh  %@",[myserver getServerName]); 
+        
+        //NSLog(@"OLALALALALAL   :   %@", haw); 
+        
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
         int x = 1;
         
