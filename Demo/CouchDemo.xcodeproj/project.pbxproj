@@ -131,6 +131,10 @@
 		3D4798BA12A1B90000581D10 /* CouchDBClientConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D4798AE12A1B90000581D10 /* CouchDBClientConstants.m */; };
 		3D4798BB12A1B90000581D10 /* NSError_CouchDBExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D4798B112A1B90000581D10 /* NSError_CouchDBExtensions.m */; };
 		3DEAED5812A2EB7400EEBD22 /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3DEAED5712A2EB7400EEBD22 /* Entitlements.plist */; };
+		742FFF9513CCDDD30048A5A0 /* NewServerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 742FFF9313CCDDD30048A5A0 /* NewServerController.m */; };
+		742FFF9613CCDDD30048A5A0 /* NewServerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 742FFF9313CCDDD30048A5A0 /* NewServerController.m */; };
+		742FFF9713CCDDD30048A5A0 /* NewServerController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 742FFF9413CCDDD30048A5A0 /* NewServerController.xib */; };
+		742FFF9813CCDDD30048A5A0 /* NewServerController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 742FFF9413CCDDD30048A5A0 /* NewServerController.xib */; };
 		BCDA6E8C132191AA00D8538A /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = BCDA6E88132191AA00D8538A /* Default.png */; };
 		BCDA6E8D132191AA00D8538A /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BCDA6E89132191AA00D8538A /* Default@2x.png */; };
 		BCDA6E8E132191AA00D8538A /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = BCDA6E8A132191AA00D8538A /* Icon.png */; };
@@ -255,6 +259,9 @@
 		3D4798B012A1B90000581D10 /* NSError_CouchDBExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSError_CouchDBExtensions.h; sourceTree = "<group>"; };
 		3D4798B112A1B90000581D10 /* NSError_CouchDBExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSError_CouchDBExtensions.m; sourceTree = "<group>"; };
 		3DEAED5712A2EB7400EEBD22 /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
+		742FFF9213CCDDD30048A5A0 /* NewServerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewServerController.h; sourceTree = "<group>"; };
+		742FFF9313CCDDD30048A5A0 /* NewServerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewServerController.m; sourceTree = "<group>"; };
+		742FFF9413CCDDD30048A5A0 /* NewServerController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = NewServerController.xib; path = Classes/NewServerController.xib; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* CouchDemo-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "CouchDemo-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		BCDA6DEA13217E2400D8538A /* libstdc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.dylib"; path = "usr/lib/gcc/arm-apple-darwin10/4.0.1/libstdc++.dylib"; sourceTree = SDKROOT; };
 		BCDA6E88132191AA00D8538A /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
@@ -315,6 +322,8 @@
 				28C286E00D94DF7D0034E888 /* RootViewController.m */,
 				3D4792DD12A1A86400581D10 /* NewItemViewController.h */,
 				3D4792DE12A1A86400581D10 /* NewItemViewController.m */,
+				742FFF9213CCDDD30048A5A0 /* NewServerController.h */,
+				742FFF9313CCDDD30048A5A0 /* NewServerController.m */,
 				3D47930A12A1AF0500581D10 /* DatabaseManager.h */,
 				3D47930B12A1AF0500581D10 /* DatabaseManager.m */,
 			);
@@ -364,6 +373,7 @@
 				BCDA6E8A132191AA00D8538A /* Icon.png */,
 				BCDA6E8B132191AA00D8538A /* Icon@2x.png */,
 				3D4792DF12A1A86400581D10 /* NewItemViewController.xib */,
+				742FFF9413CCDDD30048A5A0 /* NewServerController.xib */,
 				28F335F01007B36200424DE2 /* RootViewController.xib */,
 				28AD735F0D9D9599002E5188 /* MainWindow.xib */,
 			);
@@ -631,6 +641,7 @@
 				03563864135001DD00D2AF03 /* Default@2x.png in Resources */,
 				03563865135001DD00D2AF03 /* Icon.png in Resources */,
 				03563866135001DD00D2AF03 /* Icon@2x.png in Resources */,
+				742FFF9813CCDDD30048A5A0 /* NewServerController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -646,6 +657,7 @@
 				BCDA6E8D132191AA00D8538A /* Default@2x.png in Resources */,
 				BCDA6E8E132191AA00D8538A /* Icon.png in Resources */,
 				BCDA6E8F132191AA00D8538A /* Icon@2x.png in Resources */,
+				742FFF9713CCDDD30048A5A0 /* NewServerController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -737,6 +749,7 @@
 				035638A1135001DD00D2AF03 /* CCouchDBURLOperation.m in Sources */,
 				035638A2135001DD00D2AF03 /* CouchDBClientConstants.m in Sources */,
 				035638A3135001DD00D2AF03 /* NSError_CouchDBExtensions.m in Sources */,
+				742FFF9613CCDDD30048A5A0 /* NewServerController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -794,6 +807,7 @@
 				3D4798B912A1B90000581D10 /* CCouchDBURLOperation.m in Sources */,
 				3D4798BA12A1B90000581D10 /* CouchDBClientConstants.m in Sources */,
 				3D4798BB12A1B90000581D10 /* NSError_CouchDBExtensions.m in Sources */,
+				742FFF9513CCDDD30048A5A0 /* NewServerController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

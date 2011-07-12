@@ -19,6 +19,7 @@
 //
 
 #import "RootViewController.h"
+#import "NewServerController.h"
 #import "CCouchDBServer.h"
 #import "CCouchDBDatabase.h"
 #import "NewItemViewController.h"
@@ -71,13 +72,48 @@
     //self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
 	// setup buttons
-	UIBarButtonItem *addButtonItem = [[[UIBarButtonItem alloc] 
-									   initWithBarButtonSystemItem:UIBarButtonSystemItemAdd 
-                                       target:self 
-                                       action:@selector(addItem) 
-                                       ] autorelease];
-	addButtonItem.enabled = NO;
-	self.navigationItem.leftBarButtonItem = addButtonItem;
+//	UIBarButtonItem *addButtonItem = [[[UIBarButtonItem alloc] 
+//									   initWithBarButtonSystemItem:UIBarButtonSystemItemAdd 
+//                                       target:self 
+//                                       action:@selector(addItem) 
+//                                       ] autorelease];
+//	addButtonItem.enabled = NO;
+//	self.navigationItem.leftBarButtonItem = addButtonItem;
+    
+    // create a toolbar to have two buttons in the right
+    UIToolbar* tools = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, 133, 44.01)];
+    
+    // create the array to hold the buttons, which then gets added to the toolbar
+    NSMutableArray* buttons = [[NSMutableArray alloc] initWithCapacity:3];
+    
+    // create a standard "add" button
+    UIBarButtonItem* bi = [[UIBarButtonItem alloc]
+                           initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addItem)];
+    bi.style = UIBarButtonItemStyleBordered;
+    [buttons addObject:bi];
+    [bi release];
+    
+    // create a spacer
+    bi = [[UIBarButtonItem alloc]
+          initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
+    [buttons addObject:bi];
+    [bi release];
+    
+    // create a standard "refresh" button
+    bi = [[UIBarButtonItem alloc]
+          initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(addServer)];
+    bi.style = UIBarButtonItemStyleBordered;
+    [buttons addObject:bi];
+    [bi release];
+    
+    // stick the buttons in the toolbar
+    [tools setItems:buttons animated:NO];
+    
+    [buttons release];
+    
+    // and put the toolbar in the nav bar
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:tools];
+    [tools release];
     
 	UIActivityIndicatorView *activity = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite] autorelease];
 	[activity startAnimating];
@@ -207,6 +243,17 @@
 {
 	[self loadItemsIntoView];
 	[self dismissModalViewControllerAnimated:YES];
+}
+
+
+-(void)addServer
+{
+    NewServerController *newServerVC = [[NewServerController alloc] initWithNibName:@"NewServerController" bundle:nil];
+    newServerVC.delegate = self;
+    UINavigationController *newServerNC = [[UINavigationController alloc] initWithRootViewController:newServerVC];
+    [self presentModalViewController:newServerNC animated:YES];
+    [newServerNC release];
+    [newServerVC release];
 }
 
 -(void)addItem
