@@ -19,6 +19,7 @@
 //
 
 #import <UIKit/UIKit.h>
+@class Server;
 
 @interface RootViewController : UITableViewController {
 	NSMutableArray *items;

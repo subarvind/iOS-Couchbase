@@ -62,14 +62,21 @@
 {
 	NSString *text = textView.text;
     
+    Server *myEngine = [Server sharedInstance];
+    
+    [myEngine setFieldValueAtPos:3 ToValue:text];
+    
+    NSLog(@"pos 3: %@",[myEngine getFieldValueAtPos:3]);
+    NSLog(@"pos 2: %@",[myEngine getFieldValueAtPos:2]);
+    
     //int new = 0;
     
-    Server *myserver = [Server sharedInstance];
-//    
-    [myserver setServerName:text];
+//    Server *myserver = [Server sharedInstance];
+////    
+//    [myserver setServerName:text];
     
-    NSString * haw = [myserver getServerName];
-    NSLog(@"%@", haw);
+   // NSString * haw = [myserver getServerName];
+   // NSLog(@"%@", haw);
     
     //[Server sharedInstance].servername = text;
     [self.navigationController dismissModalViewControllerAnimated:YES];

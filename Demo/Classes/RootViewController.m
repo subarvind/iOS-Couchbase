@@ -139,12 +139,21 @@
 		// doh	
 	};
     
-    Server *thisserver = [Server sharedInstance];
     
-    NSString *userserver = [thisserver getServerName];
-	
-    NSLog(@"%@", userserver);    
-
+    
+//    Server *thisserver = [Server sharedInstance];
+//    //NSArray *userserver[1];
+//    NSString *userserver = [thisserver getServerName];
+//    
+//	if (userserver != NULL) {
+//        NSLog(@"%@", userserver);
+//    }
+//    else{
+//        NSLog(@"katta");
+//    }
+    
+        Server *myEngine = [Server sharedInstance];
+        NSLog(@" %@",[myEngine getFieldValueAtPos:3]);
     
 	//[manager syncFrom:userserver to:@"demo" onSuccess:successHandler onError:errorHandler];
    // [manager syncFrom:@"demo" to:userserver onSuccess:^() {} onError:^(id error) {}];

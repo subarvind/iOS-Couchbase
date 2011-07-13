@@ -10,44 +10,82 @@
 
 
 @implementation Server
-@synthesize servername;
-
 static Server *_sharedInstance;
 
--(id) init
+- (id) init
 {
-    if (self == [super init]) {
-        memset(servers, 0, sizeof(servers));
-    }
-    return self;
+	if (self = [super init])
+	{
+		// custom initialization
+		memset(board, 0, sizeof(board));
+	}
+	return self;
 }
 
-+(Server *)sharedInstance
++ (Server *) sharedInstance
 {
-    static Server *sharedInstance;
-    @synchronized(self){
-        if (!sharedInstance) {
-            sharedInstance = [[Server alloc] init];
-        }
-    }
-    return sharedInstance;
+	if (!_sharedInstance)
+	{
+		_sharedInstance = [[Server alloc] init];
+	}
     
-    //    if (!_sharedInstance) {
-//        _sharedInstance = [[Server alloc] init];
-//    }
-//    
-//    return _sharedInstance;
+	return _sharedInstance;
 }
 
--(NSString *) getServerName
+- (NSString *) getFieldValueAtPos:(NSUInteger)x
 {
-    //return server[0];
-    return servername;
+	return board[x];
 }
 
--(void) setServerName:(NSString *)x
+- (void) setFieldValueAtPos:(NSUInteger)x ToValue:(NSString *)newVal
 {
-    //servers[0] = x;
-    servername = x;
+	board[x] = newVal;
 }
+
 @end
+
+
+
+//@synthesize servername;
+//
+//static NSString *_sharedInstance;
+//
+//-(id) init
+//{
+//    if (self == [super init]) {
+//        memset(board, 0, sizeof(board));
+//    }
+//    return self;
+//}
+//
+//+(NSString *)sharedInstance
+//{
+////    static Server *sharedInstance;
+////    @synchronized(self){
+////        if (!sharedInstance) {
+////            sharedInstance = [[[Server alloc] init]retain];
+////        }
+////    }
+////    return sharedInstance;
+//        
+//    if (!_sharedInstance) {
+//       _sharedInstance = [[Server alloc] init];
+//   }
+//   
+//   return _sharedInstance;
+//}
+//
+//-(NSString *) getServerName
+//{
+//    return _sharedInstance;
+//    //x=servername;
+//    //return x;
+//}
+//
+//-(void) setServerName:(NSString *)x
+//{
+//    _sharedInstance = x;
+//    //servers[0] = x;
+//    //servername = x;
+//}
+//@end

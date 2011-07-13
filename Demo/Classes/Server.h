@@ -7,20 +7,36 @@
 //
 
 #import <Foundation/Foundation.h>
-
-
 @interface Server : NSObject {
-    NSString *servername;
-    NSString *servers[1];
+	NSString * board[100];  // c-style array
 }
 
-@property (nonatomic, retain) NSString *servername;
++ (Server *) sharedInstance;
 
-+(Server *) sharedInstance;
+- (NSString*) getFieldValueAtPos:(NSUInteger)x;
+- (void) setFieldValueAtPos:(NSUInteger)x ToValue:(NSString *)newVal;
 
--(NSString*) getServerName;
-
-+(NSString *) thisisserver;
-
--(void) setServerName:(NSString *)x;
 @end
+
+
+
+//@class NewServerController;
+//@class RootViewController;
+//
+//
+//@interface Server : NSObject {
+//    NSString *servername;
+////    NSString *servers[1];
+////    NSString *board[100];
+//}
+//
+//@property (nonatomic, retain) NSString *servername;
+//
+//+(Server *) sharedInstance;
+//
+//-(NSString*) getServerName;
+//
+//+(NSString *) thisisserver;
+//
+//-(void) setServerName:(NSString *)x;
+//@end

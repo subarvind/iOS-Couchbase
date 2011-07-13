@@ -7,18 +7,20 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@class Server;
 
 @interface NewServerController : UIViewController {
 	UITextView *textView;
     NSMutableArray *items;
 	id delegate;
+    Server *userserver;
 }
 
 @property(nonatomic,retain)IBOutlet	UITextView *textView;
 @property(assign) id delegate;
 @property(nonatomic, retain)NSURL *couchbaseURL;
 @property(nonatomic, retain)NSMutableArray *items;
+@property(nonatomic, retain)Server *userserver;
 
 
 -(void)loadItemsIntoView;
