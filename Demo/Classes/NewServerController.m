@@ -62,12 +62,16 @@
 {
 	NSString *text = textView.text;
     
-    Server *myEngine = [Server sharedInstance];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:text forKey:@"servername"];
+    [defaults synchronize];
+       
+    //Server *myEngine = [Server sharedInstance];
     
-    [myEngine setFieldValueAtPos:3 ToValue:text];
-    
-    NSLog(@"pos 3: %@",[myEngine getFieldValueAtPos:3]);
-    NSLog(@"pos 2: %@",[myEngine getFieldValueAtPos:2]);
+//    [myEngine setFieldValueAtPos:3 ToValue:text];
+//    
+//    NSLog(@"pos 3: %@",[myEngine getFieldValueAtPos:3]);
+//    NSLog(@"pos 2: %@",[myEngine getFieldValueAtPos:2]);
     
     //int new = 0;
     

@@ -26,6 +26,7 @@
     NSMutableArray *checked;
 	UIBarButtonItem *syncItem;
 	UIBarButtonItem *activityButtonItem;
+    NSString *servername;
     
     NSInteger   _checkboxSelections;
 }
@@ -35,6 +36,7 @@
 @property(nonatomic, retain)UIBarButtonItem *activityButtonItem;
 @property(nonatomic, retain)NSURL *couchbaseURL;
 @property(assign) id delegate;
+@property(nonatomic, retain) NSString *servername;
 
 
 -(void)loadItemsIntoView;

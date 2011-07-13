@@ -8,12 +8,14 @@
 
 #import <UIKit/UIKit.h>
 @class Server;
+extern NSString *servername;
 
 @interface NewServerController : UIViewController {
 	UITextView *textView;
     NSMutableArray *items;
 	id delegate;
     Server *userserver;
+    //NSString *servername;
 }
 
 @property(nonatomic,retain)IBOutlet	UITextView *textView;
@@ -21,6 +23,7 @@
 @property(nonatomic, retain)NSURL *couchbaseURL;
 @property(nonatomic, retain)NSMutableArray *items;
 @property(nonatomic, retain)Server *userserver;
+//@property(nonatomic, retain) NSString *servername;
 
 
 -(void)loadItemsIntoView;

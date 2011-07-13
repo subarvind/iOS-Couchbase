@@ -8,12 +8,12 @@
 
 #import <Foundation/Foundation.h>
 @interface Server : NSObject {
-	NSString * board[100];  // c-style array
+	NSUInteger board[100];  // c-style array
 }
 
 + (Server *) sharedInstance;
 
-- (NSString*) getFieldValueAtPos:(NSUInteger)x;
+- (NSString *) getFieldValueAtPos:(NSUInteger)x;
 - (void) setFieldValueAtPos:(NSUInteger)x ToValue:(NSString *)newVal;
 
 @end

@@ -139,29 +139,20 @@
 		// doh	
 	};
     
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *name = [defaults objectForKey:@"servername"];
+    NSLog(@"%@", name);
+//    Server *myEngine = [Server sharedInstance];
+//    NSString *name = [myEngine getFieldValueAtPos:3];
+//      //  NSLog([myEngine getFieldValueAtPos:3 description]);
     
-    
-//    Server *thisserver = [Server sharedInstance];
-//    //NSArray *userserver[1];
-//    NSString *userserver = [thisserver getServerName];
-//    
-//	if (userserver != NULL) {
-//        NSLog(@"%@", userserver);
-//    }
-//    else{
-//        NSLog(@"katta");
-//    }
-    
-        Server *myEngine = [Server sharedInstance];
-        NSLog(@" %@",[myEngine getFieldValueAtPos:3]);
-    
-	//[manager syncFrom:userserver to:@"demo" onSuccess:successHandler onError:errorHandler];
-   // [manager syncFrom:@"demo" to:userserver onSuccess:^() {} onError:^(id error) {}];
+	[manager syncFrom:name to:@"demo" onSuccess:successHandler onError:errorHandler];
+    [manager syncFrom:@"demo" to:name onSuccess:^() {} onError:^(id error) {}];
 }
 
 -(void)loadItemsIntoView
 {
-	if(self.navigationItem.rightBarButtonItem       != syncItem) {
+	if(self.navigationItem.rightBarButtonItem != syncItem) {
 		[self.navigationItem setRightBarButtonItem: syncItem animated:YES];
 	}
     
@@ -215,7 +206,8 @@
     //arvind - update row's accessory if it's "turned on"
     //arvind - here changes are made to local db only when a row is checked, a similar code could be added to update db when row is unchecked
     if (_checkboxSelections & flag) {
-        Server *myserver = [Server sharedInstance];
+        //Server *myserver = [Server sharedInstance];
+        
         
         //NSLog(@" djhgjlcflkh  %@",[myserver getServerName]); 
         

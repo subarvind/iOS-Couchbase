@@ -32,7 +32,7 @@ static Server *_sharedInstance;
 	return _sharedInstance;
 }
 
-- (NSString *) getFieldValueAtPos:(NSUInteger)x
+- (NSString*) getFieldValueAtPos:(NSUInteger)x
 {
 	return board[x];
 }
