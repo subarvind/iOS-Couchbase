@@ -69,18 +69,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    //self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    
-	// setup buttons
-//	UIBarButtonItem *addButtonItem = [[[UIBarButtonItem alloc] 
-//									   initWithBarButtonSystemItem:UIBarButtonSystemItemAdd 
-//                                       target:self 
-//                                       action:@selector(addItem) 
-//                                       ] autorelease];
-//	addButtonItem.enabled = NO;
-//	self.navigationItem.leftBarButtonItem = addButtonItem;
-    
     // create a toolbar to have two buttons in the right
     UIToolbar* tools = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, 133, 44.01)];
     
@@ -268,7 +256,7 @@
     //arvind - toggle the indexpath.row bit, to have the ability to check / uncheck
 //	_checkboxSelections ^= (1 << indexPath.row);
     CCouchDBDocument *doc = [self.items objectAtIndex:indexPath.row];
-    NSLog([doc description]);
+   // NSLog([doc description]);
     
     NSMutableDictionary *docContent = [[NSMutableDictionary alloc] init];//[doc valueForKey:@"content"];
     [docContent addEntriesFromDictionary:[doc valueForKey:@"content"]];

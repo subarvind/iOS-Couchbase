@@ -10,7 +10,6 @@
 		0356385F135001DD00D2AF03 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD735F0D9D9599002E5188 /* MainWindow.xib */; };
 		03563860135001DD00D2AF03 /* RootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28F335F01007B36200424DE2 /* RootViewController.xib */; };
 		03563861135001DD00D2AF03 /* NewItemViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D4792DF12A1A86400581D10 /* NewItemViewController.xib */; };
-		03563862135001DD00D2AF03 /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3DEAED5712A2EB7400EEBD22 /* Entitlements.plist */; };
 		03563863135001DD00D2AF03 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = BCDA6E88132191AA00D8538A /* Default.png */; };
 		03563864135001DD00D2AF03 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BCDA6E89132191AA00D8538A /* Default@2x.png */; };
 		03563865135001DD00D2AF03 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = BCDA6E8A132191AA00D8538A /* Icon.png */; };
@@ -130,7 +129,6 @@
 		3D4798B912A1B90000581D10 /* CCouchDBURLOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D4798AC12A1B90000581D10 /* CCouchDBURLOperation.m */; };
 		3D4798BA12A1B90000581D10 /* CouchDBClientConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D4798AE12A1B90000581D10 /* CouchDBClientConstants.m */; };
 		3D4798BB12A1B90000581D10 /* NSError_CouchDBExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D4798B112A1B90000581D10 /* NSError_CouchDBExtensions.m */; };
-		3DEAED5812A2EB7400EEBD22 /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3DEAED5712A2EB7400EEBD22 /* Entitlements.plist */; };
 		742FFF9513CCDDD30048A5A0 /* NewServerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 742FFF9313CCDDD30048A5A0 /* NewServerController.m */; };
 		742FFF9613CCDDD30048A5A0 /* NewServerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 742FFF9313CCDDD30048A5A0 /* NewServerController.m */; };
 		742FFF9713CCDDD30048A5A0 /* NewServerController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 742FFF9413CCDDD30048A5A0 /* NewServerController.xib */; };
@@ -260,7 +258,6 @@
 		3D4798AF12A1B90000581D10 /* CouchDBClientTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CouchDBClientTypes.h; sourceTree = "<group>"; };
 		3D4798B012A1B90000581D10 /* NSError_CouchDBExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSError_CouchDBExtensions.h; sourceTree = "<group>"; };
 		3D4798B112A1B90000581D10 /* NSError_CouchDBExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSError_CouchDBExtensions.m; sourceTree = "<group>"; };
-		3DEAED5712A2EB7400EEBD22 /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
 		742FFF9213CCDDD30048A5A0 /* NewServerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewServerController.h; sourceTree = "<group>"; };
 		742FFF9313CCDDD30048A5A0 /* NewServerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewServerController.m; sourceTree = "<group>"; };
 		742FFF9413CCDDD30048A5A0 /* NewServerController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = NewServerController.xib; path = Classes/NewServerController.xib; sourceTree = "<group>"; };
@@ -373,7 +370,6 @@
 			isa = PBXGroup;
 			children = (
 				8D1107310486CEB800E47090 /* CouchDemo-Info.plist */,
-				3DEAED5712A2EB7400EEBD22 /* Entitlements.plist */,
 				BCDA6E88132191AA00D8538A /* Default.png */,
 				BCDA6E89132191AA00D8538A /* Default@2x.png */,
 				BCDA6E8A132191AA00D8538A /* Icon.png */,
@@ -642,7 +638,6 @@
 				0356385F135001DD00D2AF03 /* MainWindow.xib in Resources */,
 				03563860135001DD00D2AF03 /* RootViewController.xib in Resources */,
 				03563861135001DD00D2AF03 /* NewItemViewController.xib in Resources */,
-				03563862135001DD00D2AF03 /* Entitlements.plist in Resources */,
 				03563863135001DD00D2AF03 /* Default.png in Resources */,
 				03563864135001DD00D2AF03 /* Default@2x.png in Resources */,
 				03563865135001DD00D2AF03 /* Icon.png in Resources */,
@@ -658,7 +653,6 @@
 				28AD73600D9D9599002E5188 /* MainWindow.xib in Resources */,
 				28F335F11007B36200424DE2 /* RootViewController.xib in Resources */,
 				3D4792E112A1A86400581D10 /* NewItemViewController.xib in Resources */,
-				3DEAED5812A2EB7400EEBD22 /* Entitlements.plist in Resources */,
 				BCDA6E8C132191AA00D8538A /* Default.png in Resources */,
 				BCDA6E8D132191AA00D8538A /* Default@2x.png in Resources */,
 				BCDA6E8E132191AA00D8538A /* Icon.png in Resources */,
@@ -828,6 +822,8 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
 				CODE_SIGN_ENTITLEMENTS = "";
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -839,6 +835,7 @@
 					"\"$(SDKROOT)/usr/lib/gcc/arm-apple-darwin10/4.0.1\"",
 				);
 				PRODUCT_NAME = "CouchDemo-iphonesimulator";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SUPPORTED_PLATFORMS = iphonesimulator;
 				VALID_ARCHS = "i386 armv7 armv6";
 				"VALID_ARCHS[sdk=iphoneos*]" = i386;
@@ -850,6 +847,8 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = CouchDemo_Prefix.pch;
 				INFOPLIST_FILE = "CouchDemo-Info.plist";
@@ -858,6 +857,7 @@
 					"\"$(SDKROOT)/usr/lib/gcc/arm-apple-darwin10/4.0.1\"",
 				);
 				PRODUCT_NAME = "CouchDemo-iphonesimulator";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SUPPORTED_PLATFORMS = iphonesimulator;
 				VALIDATE_PRODUCT = YES;
 				VALID_ARCHS = "i386 armv7 armv6";
