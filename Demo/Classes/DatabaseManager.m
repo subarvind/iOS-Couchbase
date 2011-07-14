@@ -71,7 +71,7 @@ static DatabaseManager *sharedManager;
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {
-	NSLog(@"Sync Error: %@", error);
+	//NSLog(@"Sync Error: %@", error);
 	id callbacks = [connections objectForKey:[connection description]];
 	if(callbacks != nil) {
 		DatabaseManagerErrorHandler errorHandler = [callbacks valueForKey:@"error"];

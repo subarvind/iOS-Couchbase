@@ -102,7 +102,7 @@
     
     // create a standard "refresh" button
     bi = [[UIBarButtonItem alloc]
-          initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(addServer)];
+          initWithBarButtonSystemItem:UIBarButtonSystemItemOrganize target:self action:@selector(addServer)];
     bi.style = UIBarButtonItemStyleBordered;
     [buttons addObject:bi];
     [bi release];
@@ -127,7 +127,7 @@
 {
 	self.syncItem = self.navigationItem.rightBarButtonItem;
 	[self.navigationItem setRightBarButtonItem: self.activityButtonItem animated:YES];
-    //cell.textLabel.text = [items objectAtIndex:indexPath.row];
+
 	DatabaseManager *manager = [DatabaseManager sharedManager:self.couchbaseURL];
 	DatabaseManagerSuccessHandler successHandler = ^() {
   	    //woot	
@@ -141,10 +141,7 @@
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *name = [defaults objectForKey:@"servername"];
-    NSLog(@"%@", name);
-//    Server *myEngine = [Server sharedInstance];
-//    NSString *name = [myEngine getFieldValueAtPos:3];
-//      //  NSLog([myEngine getFieldValueAtPos:3 description]);
+
     
 	[manager syncFrom:name to:@"demo" onSuccess:successHandler onError:errorHandler];
     [manager syncFrom:@"demo" to:name onSuccess:^() {} onError:^(id error) {}];
@@ -185,71 +182,20 @@
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
     }
-    cell.accessoryType = UITableViewCellAccessoryNone;
-    
 	// Configure the cell.
 	CCouchDBDocument *doc = [self.items objectAtIndex:indexPath.row];
     id check = [NSNumber numberWithInteger: 1];
     
     if ([[doc valueForKey:@"content"] valueForKey:@"check"] == check) {
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
+        NSLog(@"CHECK");
     }
     else{
         cell.accessoryType = UITableViewCellAccessoryNone;
+        NSLog(@"NONE");
     }
     cell.textLabel.text = [[doc valueForKey:@"content"] valueForKey:@"text"];
-    
-    //arvind - get the indexpath.row bit
-    int flag = (1 << indexPath.row);
-    
-    
-    //arvind - update row's accessory if it's "turned on"
-    //arvind - here changes are made to local db only when a row is checked, a similar code could be added to update db when row is unchecked
-    if (_checkboxSelections & flag) {
-        //Server *myserver = [Server sharedInstance];
-        
-        
-        //NSLog(@" djhgjlcflkh  %@",[myserver getServerName]); 
-        
-        //NSLog(@"OLALALALALAL   :   %@", haw); 
-        
-        cell.accessoryType = UITableViewCellAccessoryCheckmark;
-        int x = 1;
-        
-        //arvind - creatinf the updated doc
-        NSDictionary *inDocument = [NSDictionary dictionaryWithObjectsAndKeys:[[doc valueForKey:@"content"] valueForKey:@"text"], @"text"
-                                    , [[NSDate date] description], @"created_at"
-                                    , [NSNumber numberWithInt:x],@"check", nil];
-        
-        
-        DatabaseManager *sharedManager = [DatabaseManager sharedManager:[delegate getCouchbaseURL]];
-        
-        
-        CouchDBSuccessHandler inSuccessHandler = ^(id inParameter) {
-            NSLog(@"Wooohooo! %@", inParameter);
-            [delegate performSelector:@selector(newItemAdded)];
-        };
-        
-        CouchDBFailureHandler inFailureHandler = ^(NSError *error) {
-            NSLog(@"D'OH! %@", error);
-        };            
-        // NSString *updateid = [[doc valueForKey:@"content"] valueForKey:@"_id"];
-        
-        
-        //deleting content of the old doc, had to do this as update was failing, have to try and get update to work
-        NSUInteger position = [indexPath indexAtPosition:1]; // indexPath is [0, idx]
-        [[DatabaseManager sharedManager:self.couchbaseURL] deleteDocument: [items objectAtIndex:position]];
-       
-        
-        CURLOperation *op = [sharedManager.database operationToCreateDocument:inDocument 
-                                                                   identifier:[[doc valueForKey:@"content"]valueForKey:@"_id"]
-                                                               successHandler:inSuccessHandler 
-                                                               failureHandler:inFailureHandler];
 
-        
-        [op start];
-        
-    };
     return cell;
     
 }
@@ -320,7 +266,28 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     //arvind - toggle the indexpath.row bit, to have the ability to check / uncheck
-	_checkboxSelections ^= (1 << indexPath.row);
+//	_checkboxSelections ^= (1 << indexPath.row);
+    CCouchDBDocument *doc = [self.items objectAtIndex:indexPath.row];
+    NSLog([doc description]);
+    
+    NSMutableDictionary *docContent = [[NSMutableDictionary alloc] init];//[doc valueForKey:@"content"];
+    [docContent addEntriesFromDictionary:[doc valueForKey:@"content"]];
+    id zero = [NSNumber numberWithInteger: 0];
+    id one = [NSNumber numberWithInteger: 1];
+    
+    if ([docContent valueForKey:@"check"] == one) {
+        [docContent setObject:zero forKey:@"check"];
+    }
+    else{
+        [docContent setObject:one forKey:@"check"];
+    
+    }
+    //create a document of the dictionary and replace the old document
+    CCouchDBDocument *theDocument = [[[CCouchDBDocument alloc] init] autorelease];
+    [theDocument populateWithJSON:docContent];
+    
+    [self.items replaceObjectAtIndex:indexPath.row withObject:theDocument];
+    
     [tableView reloadData];
 }
 
