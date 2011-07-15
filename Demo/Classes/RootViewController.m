@@ -271,12 +271,37 @@
     
     }
     //create a document of the dictionary and replace the old document
-    CCouchDBDocument *theDocument = [[[CCouchDBDocument alloc] init] autorelease];
-    [theDocument populateWithJSON:docContent];
+   // CCouchDBDocument *theDocument = [[[CCouchDBDocument alloc] init] autorelease];
+    [doc populateWithJSON:docContent];
     
-    [self.items replaceObjectAtIndex:indexPath.row withObject:theDocument];
+//    NSLog([theDocument description]);
     
-    [tableView reloadData];
+    DatabaseManager *sharedManager = [DatabaseManager sharedManager:self.couchbaseURL];
+	CouchDBSuccessHandler inSuccessHandler = ^(id inParameter) {
+        //		NSLog(@"RVC Wooohooo! %@: %@", [inParameter class], inParameter);
+//		self.items = inParameter;
+//        NSLog(@"%@",self.items);
+        
+//		[self.tableView reloadData];
+        [self loadItemsIntoView];
+
+	};
+	
+	CouchDBFailureHandler inFailureHandler = ^(NSError *error) {
+		NSLog(@"RVC D'OH! %@", error);
+	};
+
+    
+    CURLOperation *up = [sharedManager.database operationToUpdateDocument:doc successHandler:inSuccessHandler failureHandler:inFailureHandler];
+    
+    [up start];
+    
+    //save to local
+    
+//    [self.items replaceObjectAtIndex:indexPath.row withObject:theDocument];
+  
+//    [tableView reloadData];
+
 }
 
 #pragma mark -
