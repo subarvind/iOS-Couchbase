@@ -14,7 +14,7 @@ static Server *_sharedInstance;
 
 - (id) init
 {
-	if (self = [super init])
+	if (self == [super init])
 	{
 		// custom initialization
 		memset(board, 0, sizeof(board));
@@ -32,15 +32,15 @@ static Server *_sharedInstance;
 	return _sharedInstance;
 }
 
-- (NSString*) getFieldValueAtPos:(NSUInteger)x
-{
-	return board[x];
-}
-
-- (void) setFieldValueAtPos:(NSUInteger)x ToValue:(NSString *)newVal
-{
-	board[x] = newVal;
-}
+//- (NSString*) getFieldValueAtPos:(NSUInteger)x
+//{
+//	//return board[x];
+//}
+//
+//- (void) setFieldValueAtPos:(NSUInteger)x ToValue:(NSString *)newVal
+//{
+//	//board[x] = newVal;
+//}
 
 @end
 

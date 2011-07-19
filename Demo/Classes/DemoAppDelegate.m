@@ -47,6 +47,14 @@
     // Override point for customization after application launch.
     // Add the navigation controller's view to the window and display.
 
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    NSDictionary *appDefaults = [NSDictionary dictionaryWithObject:@"http://subarvind.irisocuch.com/demo" forKey:@"servername"];
+    
+    [defaults registerDefaults:appDefaults];
+    
+    [defaults synchronize];
+    
 	[window addSubview:navigationController.view];
 	[window makeKeyAndVisible];
     return YES;
