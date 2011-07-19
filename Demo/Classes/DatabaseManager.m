@@ -122,8 +122,6 @@ static DatabaseManager *sharedManager;
 
     CURLOperation *op = [self.database operationToUpdateDocument:inDocument successHandler:inSuccessHandler failureHandler:inFailureHandler];
     
-    [op start];
-    
 }
 
 -(void)dealloc

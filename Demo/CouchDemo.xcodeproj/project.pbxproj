@@ -129,16 +129,12 @@
 		3D4798B912A1B90000581D10 /* CCouchDBURLOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D4798AC12A1B90000581D10 /* CCouchDBURLOperation.m */; };
 		3D4798BA12A1B90000581D10 /* CouchDBClientConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D4798AE12A1B90000581D10 /* CouchDBClientConstants.m */; };
 		3D4798BB12A1B90000581D10 /* NSError_CouchDBExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D4798B112A1B90000581D10 /* NSError_CouchDBExtensions.m */; };
-		742FFFA813CCE03A0048A5A0 /* Server.m in Sources */ = {isa = PBXBuildFile; fileRef = 742FFFA713CCE03A0048A5A0 /* Server.m */; };
-		742FFFA913CCE03A0048A5A0 /* Server.m in Sources */ = {isa = PBXBuildFile; fileRef = 742FFFA713CCE03A0048A5A0 /* Server.m */; };
-		74C39E5D13D5F302002A34A1 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 74C39E5C13D5F302002A34A1 /* Settings.bundle */; };
-		74C39E5E13D5F302002A34A1 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 74C39E5C13D5F302002A34A1 /* Settings.bundle */; };
-		74C39E6E13D62A4C002A34A1 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 74C39E6B13D6296B002A34A1 /* Default@2x.png */; };
-		74C39E6F13D62A57002A34A1 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 74C39E6B13D6296B002A34A1 /* Default@2x.png */; };
-		74C39E7913D644FF002A34A1 /* TempCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 74C39E7713D644FF002A34A1 /* TempCell.m */; };
-		74C39E7A13D644FF002A34A1 /* TempCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 74C39E7713D644FF002A34A1 /* TempCell.m */; };
-		74C39E7B13D644FF002A34A1 /* TempCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 74C39E7813D644FF002A34A1 /* TempCell.xib */; };
-		74C39E7C13D644FF002A34A1 /* TempCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 74C39E7813D644FF002A34A1 /* TempCell.xib */; };
+		742FFF9513CCDDD30048A5A0 /* NewServerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 742FFF9313CCDDD30048A5A0 /* NewServerController.m */; };
+		742FFF9613CCDDD30048A5A0 /* NewServerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 742FFF9313CCDDD30048A5A0 /* NewServerController.m */; };
+		742FFF9713CCDDD30048A5A0 /* NewServerController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 742FFF9413CCDDD30048A5A0 /* NewServerController.xib */; };
+		742FFF9813CCDDD30048A5A0 /* NewServerController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 742FFF9413CCDDD30048A5A0 /* NewServerController.xib */; };
+		74C39E8313D64965002A34A1 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 74C39E8213D64965002A34A1 /* Settings.bundle */; };
+		74C39E8413D64965002A34A1 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 74C39E8213D64965002A34A1 /* Settings.bundle */; };
 		BCDA6E8C132191AA00D8538A /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = BCDA6E88132191AA00D8538A /* Default.png */; };
 		BCDA6E8D132191AA00D8538A /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BCDA6E89132191AA00D8538A /* Default@2x.png */; };
 		BCDA6E8E132191AA00D8538A /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = BCDA6E8A132191AA00D8538A /* Icon.png */; };
@@ -262,13 +258,10 @@
 		3D4798AF12A1B90000581D10 /* CouchDBClientTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CouchDBClientTypes.h; sourceTree = "<group>"; };
 		3D4798B012A1B90000581D10 /* NSError_CouchDBExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSError_CouchDBExtensions.h; sourceTree = "<group>"; };
 		3D4798B112A1B90000581D10 /* NSError_CouchDBExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSError_CouchDBExtensions.m; sourceTree = "<group>"; };
-		742FFFA613CCE03A0048A5A0 /* Server.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Server.h; sourceTree = "<group>"; };
-		742FFFA713CCE03A0048A5A0 /* Server.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Server.m; sourceTree = "<group>"; };
-		74C39E5C13D5F302002A34A1 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
-		74C39E6B13D6296B002A34A1 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
-		74C39E7613D644FF002A34A1 /* TempCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TempCell.h; sourceTree = "<group>"; };
-		74C39E7713D644FF002A34A1 /* TempCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TempCell.m; sourceTree = "<group>"; };
-		74C39E7813D644FF002A34A1 /* TempCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TempCell.xib; sourceTree = "<group>"; };
+		742FFF9213CCDDD30048A5A0 /* NewServerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewServerController.h; sourceTree = "<group>"; };
+		742FFF9313CCDDD30048A5A0 /* NewServerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewServerController.m; sourceTree = "<group>"; };
+		742FFF9413CCDDD30048A5A0 /* NewServerController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = NewServerController.xib; path = Classes/NewServerController.xib; sourceTree = "<group>"; };
+		74C39E8213D64965002A34A1 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* CouchDemo-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "CouchDemo-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		BCDA6DEA13217E2400D8538A /* libstdc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.dylib"; path = "usr/lib/gcc/arm-apple-darwin10/4.0.1/libstdc++.dylib"; sourceTree = SDKROOT; };
 		BCDA6E88132191AA00D8538A /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
@@ -324,16 +317,16 @@
 			isa = PBXGroup;
 			children = (
 				1D3623240D0F684500981E51 /* DemoAppDelegate.h */,
-				74C39E5C13D5F302002A34A1 /* Settings.bundle */,
 				1D3623250D0F684500981E51 /* DemoAppDelegate.m */,
+				74C39E8213D64965002A34A1 /* Settings.bundle */,
 				28C286DF0D94DF7D0034E888 /* RootViewController.h */,
 				28C286E00D94DF7D0034E888 /* RootViewController.m */,
 				3D4792DD12A1A86400581D10 /* NewItemViewController.h */,
 				3D4792DE12A1A86400581D10 /* NewItemViewController.m */,
+				742FFF9213CCDDD30048A5A0 /* NewServerController.h */,
+				742FFF9313CCDDD30048A5A0 /* NewServerController.m */,
 				3D47930A12A1AF0500581D10 /* DatabaseManager.h */,
 				3D47930B12A1AF0500581D10 /* DatabaseManager.m */,
-				742FFFA613CCE03A0048A5A0 /* Server.h */,
-				742FFFA713CCE03A0048A5A0 /* Server.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -350,7 +343,6 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
-				74C39E6B13D6296B002A34A1 /* Default@2x.png */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
@@ -381,11 +373,9 @@
 				BCDA6E8A132191AA00D8538A /* Icon.png */,
 				BCDA6E8B132191AA00D8538A /* Icon@2x.png */,
 				3D4792DF12A1A86400581D10 /* NewItemViewController.xib */,
+				742FFF9413CCDDD30048A5A0 /* NewServerController.xib */,
 				28F335F01007B36200424DE2 /* RootViewController.xib */,
 				28AD735F0D9D9599002E5188 /* MainWindow.xib */,
-				74C39E7613D644FF002A34A1 /* TempCell.h */,
-				74C39E7713D644FF002A34A1 /* TempCell.m */,
-				74C39E7813D644FF002A34A1 /* TempCell.xib */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -650,9 +640,8 @@
 				03563864135001DD00D2AF03 /* Default@2x.png in Resources */,
 				03563865135001DD00D2AF03 /* Icon.png in Resources */,
 				03563866135001DD00D2AF03 /* Icon@2x.png in Resources */,
-				74C39E5E13D5F302002A34A1 /* Settings.bundle in Resources */,
-				74C39E6F13D62A57002A34A1 /* Default@2x.png in Resources */,
-				74C39E7C13D644FF002A34A1 /* TempCell.xib in Resources */,
+				742FFF9813CCDDD30048A5A0 /* NewServerController.xib in Resources */,
+				74C39E8413D64965002A34A1 /* Settings.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -667,9 +656,8 @@
 				BCDA6E8D132191AA00D8538A /* Default@2x.png in Resources */,
 				BCDA6E8E132191AA00D8538A /* Icon.png in Resources */,
 				BCDA6E8F132191AA00D8538A /* Icon@2x.png in Resources */,
-				74C39E5D13D5F302002A34A1 /* Settings.bundle in Resources */,
-				74C39E6E13D62A4C002A34A1 /* Default@2x.png in Resources */,
-				74C39E7B13D644FF002A34A1 /* TempCell.xib in Resources */,
+				742FFF9713CCDDD30048A5A0 /* NewServerController.xib in Resources */,
+				74C39E8313D64965002A34A1 /* Settings.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -761,8 +749,7 @@
 				035638A1135001DD00D2AF03 /* CCouchDBURLOperation.m in Sources */,
 				035638A2135001DD00D2AF03 /* CouchDBClientConstants.m in Sources */,
 				035638A3135001DD00D2AF03 /* NSError_CouchDBExtensions.m in Sources */,
-				742FFFA913CCE03A0048A5A0 /* Server.m in Sources */,
-				74C39E7A13D644FF002A34A1 /* TempCell.m in Sources */,
+				742FFF9613CCDDD30048A5A0 /* NewServerController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -820,8 +807,7 @@
 				3D4798B912A1B90000581D10 /* CCouchDBURLOperation.m in Sources */,
 				3D4798BA12A1B90000581D10 /* CouchDBClientConstants.m in Sources */,
 				3D4798BB12A1B90000581D10 /* NSError_CouchDBExtensions.m in Sources */,
-				742FFFA813CCE03A0048A5A0 /* Server.m in Sources */,
-				74C39E7913D644FF002A34A1 /* TempCell.m in Sources */,
+				742FFF9513CCDDD30048A5A0 /* NewServerController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -842,7 +828,6 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = CouchDemo_Prefix.pch;
 				INFOPLIST_FILE = "CouchDemo-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SDKROOT)/usr/lib/gcc/arm-apple-darwin10/4.0.1\"",
@@ -850,7 +835,6 @@
 				PRODUCT_NAME = "CouchDemo-iphonesimulator";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SUPPORTED_PLATFORMS = iphonesimulator;
-				TARGETED_DEVICE_FAMILY = "1,2";
 				VALID_ARCHS = "i386 armv7 armv6";
 				"VALID_ARCHS[sdk=iphoneos*]" = i386;
 			};
@@ -866,7 +850,6 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = CouchDemo_Prefix.pch;
 				INFOPLIST_FILE = "CouchDemo-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SDKROOT)/usr/lib/gcc/arm-apple-darwin10/4.0.1\"",
@@ -874,7 +857,6 @@
 				PRODUCT_NAME = "CouchDemo-iphonesimulator";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SUPPORTED_PLATFORMS = iphonesimulator;
-				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VALID_ARCHS = "i386 armv7 armv6";
 				"VALID_ARCHS[sdk=iphoneos*]" = i386;

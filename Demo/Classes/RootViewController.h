@@ -19,7 +19,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "DemoAppDelegate.h"
 @class Server;
 
 @interface RootViewController : UITableViewController {
@@ -28,8 +27,7 @@
 	UIBarButtonItem *syncItem;
 	UIBarButtonItem *activityButtonItem;
     NSString *servername;
-    UITableViewCell *settingsCell;
-    DemoAppDelegate *settings;    
+    
     NSInteger   _checkboxSelections;
 }
 @property(nonatomic, retain)NSMutableArray *items;

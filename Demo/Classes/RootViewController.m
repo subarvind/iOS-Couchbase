@@ -19,13 +19,14 @@
 //
 
 #import "RootViewController.h"
+#import "NewServerController.h"
 #import "CCouchDBServer.h"
 #import "CCouchDBDatabase.h"
 #import "NewItemViewController.h"
 #import "DatabaseManager.h"
 #import "CouchDBClientTypes.h"
 #import "CURLOperation.h"
-#import "Server.h"
+
 
 
 
@@ -67,47 +68,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-//    // create a toolbar to have two buttons in the right
-//    UIToolbar* tools = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, 133, 44.01)];
-//    
-//    // create the array to hold the buttons, which then gets added to the toolbar
-//    NSMutableArray* buttons = [[NSMutableArray alloc] initWithCapacity:3];
-//    
-//    // create a standard "add" button
-//    UIBarButtonItem* bi = [[UIBarButtonItem alloc]
-//                           initWithTitle:@"New Item" style:UIBarButtonItemStyleBordered target:self action:@selector(addItem)];
-//    bi.style = UIBarButtonItemStyleBordered;
-//    [buttons addObject:bi];
-//    [bi release];
-//    
-//    // create a spacer
-//    bi = [[UIBarButtonItem alloc]
-//          initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
-//    [buttons addObject:bi];
-//    [bi release];
-//    
-//    // create a standard "refresh" button
-//    bi = [[UIBarButtonItem alloc]
-//          initWithBarButtonSystemItem:UIBarButtonSystemItemOrganize target:self action:@selector(addServer)];
-//    bi.style = UIBarButtonItemStyleBordered;
-//    [buttons addObject:bi];
-//    [bi release];
-//    
-//    // stick the buttons in the toolbar
-//    [tools setItems:buttons animated:NO];
-//    
-//    [buttons release];
-//    
-//    // and put the toolbar in the nav bar
-//    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:tools];
-//    [tools release];
-    
-    UIBarButtonItem *addButton = [[UIBarButtonItem alloc]
-                                   initWithTitle:@"New Item" style:UIBarButtonItemStyleBordered target:self action:@selector(addItem)];
-    
-    [[self navigationItem] setLeftBarButtonItem:addButton];
-    [addButton release];
+   
+    UIBarButtonItem* addItem = [[UIBarButtonItem alloc]
+                           initWithTitle:@"New Item" style:UIBarButtonItemStyleBordered target:self action:@selector(addItem)];
+    self.navigationItem.leftBarButtonItem = addItem;
+    [addItem release];
+
     
 	UIActivityIndicatorView *activity = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite] autorelease];
 	[activity startAnimating];
@@ -173,11 +139,8 @@
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        [[NSBundle mainBundle] loadNibNamed:@"TempCell" owner:self options:nil]; 
-        cell = settingsCell; 
-        settingsCell = nil;
-//        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
-//        cell.textLabel.textColor = [UIColor whiteColor]; //Change the text color
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+        cell.textLabel.textColor = [UIColor whiteColor];
     }
 	// Configure the cell.
 	CCouchDBDocument *doc = [self.items objectAtIndex:indexPath.row];
@@ -192,7 +155,6 @@
         NSLog(@"NONE");
     }
     cell.textLabel.text = [[doc valueForKey:@"content"] valueForKey:@"text"];
-    
 
     return cell;
     
@@ -204,16 +166,6 @@
 	[self dismissModalViewControllerAnimated:YES];
 }
 
-
-//-(void)addServer
-//{
-//    NewServerController *newServerVC = [[NewServerController alloc] initWithNibName:@"NewServerController" bundle:nil];
-//    newServerVC.delegate = self;
-//    UINavigationController *newServerNC = [[UINavigationController alloc] initWithRootViewController:newServerVC];
-//    [self presentModalViewController:newServerNC animated:YES];
-//    [newServerNC release];
-//    [newServerVC release];
-//}
 
 -(void)addItem
 {
@@ -233,7 +185,7 @@
 
 // Customize the number of sections in the table view.
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
+    return 2;
 }
 
 
