@@ -19,16 +19,14 @@
 //
 
 #import <UIKit/UIKit.h>
-@class Server;
+
 
 @interface RootViewController : UITableViewController {
 	NSMutableArray *items;
     NSMutableArray *checked;
 	UIBarButtonItem *syncItem;
 	UIBarButtonItem *activityButtonItem;
-    NSString *servername;
-    
-    NSInteger   _checkboxSelections;
+    //IBOutlet UITextField *textField;
 }
 @property(nonatomic, retain)NSMutableArray *items;
 @property(nonatomic, retain) NSMutableArray *checked;
@@ -43,5 +41,6 @@
 -(void)couchbaseDidStart:(NSURL *)serverURL;
 -(NSURL *)getCouchbaseURL;
 - (void)addIndex:(NSUInteger)index;
+-(IBAction) keyboard;
 
 @end

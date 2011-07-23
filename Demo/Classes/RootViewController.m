@@ -19,10 +19,8 @@
 //
 
 #import "RootViewController.h"
-#import "NewServerController.h"
 #import "CCouchDBServer.h"
 #import "CCouchDBDatabase.h"
-#import "NewItemViewController.h"
 #import "DatabaseManager.h"
 #import "CouchDBClientTypes.h"
 #import "CURLOperation.h"
@@ -62,17 +60,16 @@
 	self.navigationItem.rightBarButtonItem = self.syncItem;
 	self.navigationItem.leftBarButtonItem.enabled = YES;
 	self.navigationItem.rightBarButtonItem.enabled = YES;
-    
-    //_checkboxSelections =0;
+
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
    
-    UIBarButtonItem* addItem = [[UIBarButtonItem alloc]
-                           initWithTitle:@"New Item" style:UIBarButtonItemStyleBordered target:self action:@selector(addItem)];
-    self.navigationItem.leftBarButtonItem = addItem;
-    [addItem release];
+//    UIBarButtonItem* addItem = [[UIBarButtonItem alloc]
+//                           initWithTitle:@"New Item" style:UIBarButtonItemStyleBordered target:self action:@selector(addItem)];
+//    self.navigationItem.leftBarButtonItem = addItem;
+//    [addItem release];
 
     
 	UIActivityIndicatorView *activity = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite] autorelease];
@@ -80,6 +77,8 @@
 	self.activityButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:activity] autorelease];
 	self.activityButtonItem.enabled = NO;
 	self.navigationItem.rightBarButtonItem = activityButtonItem;
+    
+    
 }
 
 -(void)sync
@@ -135,12 +134,13 @@
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
+    
     static NSString *CellIdentifier = @"Cell";
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
-        cell.textLabel.textColor = [UIColor whiteColor];
+        
     }
 	// Configure the cell.
 	CCouchDBDocument *doc = [self.items objectAtIndex:indexPath.row];
@@ -167,25 +167,52 @@
 }
 
 
--(void)addItem
-{
-	// TBD
-	NewItemViewController *newItemVC = [[NewItemViewController alloc] initWithNibName:@"NewItemViewController" bundle:nil];
-	newItemVC.delegate = self;
-	UINavigationController *newItemNC = [[UINavigationController alloc] initWithRootViewController:newItemVC];
-	[self presentModalViewController:newItemNC animated:YES];
-	[newItemVC release];
-	[newItemNC release];
+- (BOOL)textFieldShouldReturn:(UITextField *)textField { 
+    
+    //[textField resignFirstResponder];  
+    
+    NSString *text = textField.text;
+    
+    int new = 0;
+	
+	NSDictionary *inDocument = [NSDictionary dictionaryWithObjectsAndKeys:text, @"text"
+                                , [[NSDate date] description], @"created_at"
+                                , [NSNumber numberWithInt:new],@"check", nil];
+	CouchDBSuccessHandler inSuccessHandler = ^(id inParameter) {
+		NSLog(@"Wooohooo! %@", inParameter);
+		[delegate performSelector:@selector(newItemAdded)];
+	};
+    
+	CouchDBFailureHandler inFailureHandler = ^(NSError *error) {
+		NSLog(@"D'OH! %@", error);
+	};
+	CFUUIDRef uuid = CFUUIDCreate(nil);
+    NSString *guid = (NSString*)CFUUIDCreateString(nil, uuid);
+    CFRelease(uuid);
+	NSString *docId = [NSString stringWithFormat:@"%f-%@", CFAbsoluteTimeGetCurrent(), guid];
+	DatabaseManager *sharedManager = [DatabaseManager sharedManager:[delegate getCouchbaseURL]];
+	CURLOperation *op = [sharedManager.database operationToCreateDocument:inDocument 
+															   identifier:docId
+														   successHandler:inSuccessHandler 
+														   failureHandler:inFailureHandler];
+    
+    
+    //CURLOperation *op = [sharedManager.database operationToCreateDocument:inDocument
+    
+	[op start];
+    //arvind - am creating a new doc and then loading them on the screen here
+    
+    [self loadItemsIntoView];
+      
+    return YES; 
 }
-
-
 
 #pragma mark -
 #pragma mark Table view data source
 
 // Customize the number of sections in the table view.
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 2;
+    return 1;
 }
 
 
